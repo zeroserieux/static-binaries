@@ -1,0 +1,17 @@
+#!/usr/bin/env rake
+
+require 'rake'
+require 'rake/clean'
+
+require 'climate_control'   # For modifying ENV
+
+require './config'
+
+# Set output directory
+ENV['OUTPUT_DIR'] = 'out'
+
+# Task to create the build directory
+directory ENV['OUTPUT_DIR']
+
+# Require all recipes.
+Dir.glob(File.join('recipes', '*.rake')).each {|r| import r }
